@@ -1,5 +1,5 @@
 <?php
-$fichier = fopen("exo1.txt", "a+");
+$fichier = fopen("exo3.txt", "a+");
 if ($fichier) {
     fwrite($fichier, "\nAlice Dupont\n John Doe\n Jean Martin\n");
     fclose($fichier);
