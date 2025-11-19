@@ -64,10 +64,10 @@ $query->execute();
 
 $data = $query->fetchAll();
 
-// Récupérer toutes les courses pour le formulaire
+
 $courses = $mysqlClient->query("SELECT DISTINCT course FROM football.`100`")->fetchAll(PDO::FETCH_COLUMN);
 
-// Total pour pagination
+
 $totalRows = $mysqlClient->query("SELECT COUNT(*) FROM football.`100`")->fetchColumn();
 $totalPages = ceil($totalRows / $limit);
 
