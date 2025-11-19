@@ -1,11 +1,6 @@
 
 <?php
-// Connexion à la base de données MySQL avec PDO
-try {
-    $mysqlClient = new 	PDO( 'mysql:host=localhost;dbname=football;charset=utf8', 'root', 'L@elwifi2025');
-}   catch (PDOException $e){
-        die($e->getMessage());
-}
+include 'config.php';
 
 // Requête SQL pour récupérer toutes les données de la table `100`
 $query = $mysqlClient ->prepare( "SELECT * FROM football.`100`;");
