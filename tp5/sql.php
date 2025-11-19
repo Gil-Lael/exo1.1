@@ -1,7 +1,7 @@
 <?php 
 include 'config.php';
 
-
+// ajout du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (strlen($_POST['nom']) < 3) {
@@ -29,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 }
 
-
+// ajout de la recherche
 $search = $_GET['search'] ?? "";
 
-
+// ajout de la pagination
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 10;
 $offset = ($page - 1) * $limit;
@@ -64,10 +64,10 @@ $query->execute();
 
 $data = $query->fetchAll();
 
-
+// Récupération des courses pour le formulaire avec ce qu'on a appris en sql
 $courses = $mysqlClient->query("SELECT DISTINCT course FROM football.`100`")->fetchAll(PDO::FETCH_COLUMN);
 
-
+//pagination - calcul du nombre total de pages
 $totalRows = $mysqlClient->query("SELECT COUNT(*) FROM football.`100`")->fetchColumn();
 $totalPages = ceil($totalRows / $limit);
 
@@ -82,7 +82,7 @@ $totalPages = ceil($totalRows / $limit);
 </head>
 <body>
 
-
+<!-- Ajout du formulaire -->
 <h2>Ajouter un résultat</h2>
 <form method="POST">
     Nom : <input type="text" name="nom" required>
@@ -97,7 +97,7 @@ $totalPages = ceil($totalRows / $limit);
     <button type="submit">Ajouter</button>
 </form>
 
-
+<!-- Ajout de la barre derecherche -->
 <form method="GET">
     <input type="text" name="search" value="<?= $search ?>" placeholder="Rechercher">
     <button type="submit">OK</button>
