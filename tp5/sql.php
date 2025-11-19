@@ -1,9 +1,7 @@
 <?php 
 include 'config.php';
 
-// ------------------------
-// Ajout : validation formulaire + insertion
-// ------------------------
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (strlen($_POST['nom']) < 3) {
@@ -31,21 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 }
 
-// ------------------------
-// Ajout : recherche
-// ------------------------
+
 $search = $_GET['search'] ?? "";
 
-// ------------------------
-// Ajout : pagination
-// ------------------------
+
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 10;
 $offset = ($page - 1) * $limit;
 
-// ------------------------
-// Ton code d'origine (tri)
-// ------------------------
+
 $sort = "nom";
 if (isset($_GET['sort'])) {
     $sort = $_GET['sort'];
@@ -55,9 +47,7 @@ if (isset($_GET['order'])) {
     $order = $_GET['order'];
 }
 
-// ------------------------
-// Ajout : classement + recherche + pagination
-// ------------------------
+
 $query = $mysqlClient->prepare(
     "SELECT *,
     RANK() OVER (PARTITION BY course ORDER BY temps ASC) AS classement
@@ -92,7 +82,7 @@ $totalPages = ceil($totalRows / $limit);
 </head>
 <body>
 
-<!-- AJOUT : formulaire -->
+
 <h2>Ajouter un résultat</h2>
 <form method="POST">
     Nom : <input type="text" name="nom" required>
@@ -107,7 +97,7 @@ $totalPages = ceil($totalRows / $limit);
     <button type="submit">Ajouter</button>
 </form>
 
-<!-- AJOUT : barre de recherche -->
+
 <form method="GET">
     <input type="text" name="search" value="<?= $search ?>" placeholder="Rechercher">
     <button type="submit">OK</button>
@@ -117,7 +107,7 @@ $totalPages = ceil($totalRows / $limit);
     <thead>
         <tr>
 
-            <!-- Ton code EXACT -->
+            
             <th>Nom   <a  <?php if ($sort == "nom" && $order == "desc") {
                 echo 'class="active"';} ?>  href="./sql.php?sort=nom" > ↓ </a>
                  <a  <?php if ($sort == "nom" && $order == "asc") {
@@ -138,10 +128,10 @@ $totalPages = ceil($totalRows / $limit);
                 <a <?php if ($sort == "temps" && $order == "asc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=temps&order=asc"> ↑ </a></th>
 
-            <!-- AJOUT : classement -->
+            
             <th>Classement</th>
 
-            <!-- AJOUT : modifier -->
+            
             <th>Modifier</th>
 
         </tr>
@@ -153,7 +143,7 @@ $totalPages = ceil($totalRows / $limit);
         <td><?php echo $value["course"] ?></td>
         <td><?php echo $value["temps"] ?></td>
 
-        <!-- AJOUT -->
+        
         <td><?php echo $value["classement"]; ?></td>
         <td><a href="edit.php?id=<?= $value["id"] ?>">Modifier</a></td>
 
@@ -161,7 +151,6 @@ $totalPages = ceil($totalRows / $limit);
     <?php } ?>
 </table>
 
-<!-- AJOUT : pagination -->
 <div>
     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
         <a href="?page=<?= $i ?>&sort=<?= $sort ?>&order=<?= $order ?>"><?= $i ?></a>
