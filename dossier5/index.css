@@ -1,0 +1,22 @@
+.active{
+    color: red;
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: blue;
+}
+.pagination a.active {
+    font-weight: bold;
+    color: red;
+}
