@@ -30,18 +30,18 @@ $data = $query -> fetchAll();
     <thead>
         <tr>
 
-            <th>Nom   <a  <?php if ($sort == "nom") {
+            <th>Nom   <a  <?php if ($sort == "nom" && $order == "desc") {
                 echo 'class="active"';} ?>  href="./sql.php?sort=nom" > ↓ </a>
                  <a  <?php if ($sort == "nom" && $order == "asc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=nom&order=asc"> ↑ </a></th>
-            <th>Pays    <a <?php if ($sort == "pays") {
+            <th>Pays    <a <?php if ($sort == "pays" && $order == "desc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=pays"> ↓ </a> <a <?php if ($sort == "pays" && $order == "asc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=pays&order=asc"> ↑ </a></th>
-            <th>Course  <a <?php if ($sort == "course") {
+            <th>Course  <a <?php if ($sort == "course" && $order == "desc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=course"> ↓ </a> <a <?php if ($sort == "course" && $order == "asc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=course&order=asc"> ↑ </a></th>
            
-           <th>Temps   <a <?php if ($sort == "temps") {
+           <th>Temps   <a <?php if ($sort == "temps" && $order == "desc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=temps"> ↓ </a> <a <?php if ($sort == "temps" && $order == "asc") {
                 echo 'class="active"';} ?> href="./sql.php?sort=temps&order=asc"> ↑ </a></th> 
             
