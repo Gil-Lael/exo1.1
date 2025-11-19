@@ -17,16 +17,34 @@ $query -> execute();
 
 $data = $query -> fetchAll();
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
 <table>
     <thead>
         <tr>
 
-            <th>Nom <a href="./sql.php?sort=nom">↓</a> <a href="./sql.php?sort=nom&order=asc">↑</a></th>
-            <th>Pays <a href="./sql.php?sort=pays">↓</a> <a href="./sql.php?sort=pays&order=asc">↑</a></th>
-            <th>Course <a href="./sql.php?sort=course">↓</a> <a href="./sql.php?sort=course&order=asc">↑</a></th>
-            <th>Temps <a href="./sql.php?sort=temps">↓</a> <a href="./sql.php?sort=temps&order=asc">↑</a></th>
-
+            <th>Nom   <a  <?php if ($sort == "nom") {
+                echo 'class="active"';} ?>  href="./sql.php?sort=nom" > ↓ </a>
+                 <a  <?php if ($sort == "nom" && $order == "asc") {
+                echo 'class="active"';} ?> href="./sql.php?sort=nom&order=asc"> ↑ </a></th>
+            <th>Pays    <a <?php if ($sort == "pays") {
+                echo 'class="active"';} ?> href="./sql.php?sort=pays"> ↓ </a> <a <?php if ($sort == "pays" && $order == "asc") {
+                echo 'class="active"';} ?> href="./sql.php?sort=pays&order=asc"> ↑ </a></th>
+            <th>Course  <a <?php if ($sort == "course") {
+                echo 'class="active"';} ?> href="./sql.php?sort=course"> ↓ </a> <a <?php if ($sort == "course" && $order == "asc") {
+                echo 'class="active"';} ?> href="./sql.php?sort=course&order=asc"> ↑ </a></th>
+           
+           <th>Temps   <a <?php if ($sort == "temps") {
+                echo 'class="active"';} ?> href="./sql.php?sort=temps"> ↓ </a> <a <?php if ($sort == "temps" && $order == "asc") {
+                echo 'class="active"';} ?> href="./sql.php?sort=temps&order=asc"> ↑ </a></th> 
+            
         </tr>
     </thead>
     <?php foreach ($data as $value) { ?>
@@ -39,10 +57,13 @@ $data = $query -> fetchAll();
 </table>
 <?php
 
-var_dump($data);
+;
 
 // Fermeture de la connexion
 $mysqlClient = null;
 $dbh = null;
 ?>
 
+
+</body>
+</html>
